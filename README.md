@@ -9,3 +9,7 @@ Compiler : Visual Studio 2017 (Project awalnya di buat di VS 2008 Upgrade ke 201
 Language : C/C++ (MFC)
 
 Apabila ada issue, error, bug, kritik atau saran, silahkan laporkan.
+
+Donate PayPal : 
+
+https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XHUYHTMW7NG6N
