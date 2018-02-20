@@ -8,8 +8,4 @@ Compiler : Visual Studio 2017 (Project awalnya di buat di VS 2008 Upgrade ke 201
 
 Language : C/C++ (MFC)
 
-Apabila ada issue, error, bug, kritik atau saran, silahkan laporan.
-
-FB -> https://www.facebook.com/JazzyBeckerIslamSejati
-Skype -> jazzybecker
-YouTube -> https://www.youtube.com/user/TheJazzyBecker
+Apabila ada issue, error, bug, kritik atau saran, silahkan laporkan.
