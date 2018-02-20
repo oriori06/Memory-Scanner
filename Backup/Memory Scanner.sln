@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "[WF] Memory Scanner", "Memory Scanner\Memory Scanner.vcproj", "{439A3237-7230-4D76-97C4-7F0E8D76C61D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{439A3237-7230-4D76-97C4-7F0E8D76C61D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{439A3237-7230-4D76-97C4-7F0E8D76C61D}.Debug|Win32.Build.0 = Debug|Win32
+		{439A3237-7230-4D76-97C4-7F0E8D76C61D}.Release|Win32.ActiveCfg = Release|Win32
+		{439A3237-7230-4D76-97C4-7F0E8D76C61D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
