@@ -1,0 +1,118 @@
+#include "SecureSDK.h"
+#include "Xor.h"
+#include "resource.h"
+#include "MemScan.h"
+
+LOGFONT lf; HFONT hFont; HDC hDC;
+enum
+{
+	TIMER2
+};
+
+//----------------------------------------------------------------------------------------------------------
+void InitVal2Chr()
+{
+	//Init value ke char
+	for(int i = 0; i<= 15; i++)
+	{
+		for(int k = 0; k <= 256; k++)
+		{
+			if(bVal[i] == 0 || bVal[i] == 9 || bVal[i] == 10 || bVal[i] == 13)
+				str += ".";
+			else
+			{
+				sprintf(sstr, "%c", bVal[i]);
+				str += sstr;
+				SetDlgItemTextA(hDlg, Id_Bchar+j, str.c_str());
+			}
+		}
+		str = "";
+	}
+}
+
+LRESULT CALLBACK MemViewer(HWND hDlg, UINT Msg, WPARAM wParam, LPARAM lParam)
+{
+	//variable deklarasikan dulu
+	BYTE bVal[256]; 
+	DWORD dwAddr;
+	char buf[8], sstr[5];
+	string str;
+	int j = 0, Id_Bchar = 1111;
+	switch(Msg)
+	{
+		case WM_INITDIALOG:
+			for(int i = IDC_BVAL1; i <= IDC_BVAL256; i++)
+			{
+				SetFont(hDlg, lf, hFont, hDC, i, 11, "MS Hans Sherif", false);
+			}
+			for(int i = IDC_ADDR1; i <= IDC_ADDR16; i++)
+			{
+				SetFont(hDlg, lf, hFont, hDC, i, 11, "MS Hans Sherif", false);
+			}
+			for(int i = IDC_BCHAR1; i <= IDC_BCHAR16; i++)
+			{
+				SetFont(hDlg, lf, hFont, hDC, i, 11, "MS Hans Sherif", false);
+			}
+			SetDlgItemTextA(hDlg, IDC_EDADDR, "00400000");
+			SetTimer(hDlg, TIMER2, 50, 0);
+			break;
+
+		case WM_CLOSE:
+			EndDialog(hDlg, 0);
+			break;
+		case WM_TIMER:
+			switch(LOWORD(lParam))
+			{
+				case TIMER2:
+					{
+						GetDlgItemTextA(hDlg, IDC_EDADDR, buf, 9);
+						dwAddr = hextoint(buf);
+						if(ReadProcessMemory(GetCurrentProcess(), (void*)dwAddr, &bVal, 256, NULL))
+						{
+							for(int i = IDC_BVAL1; i <= IDC_BVAL256; i++)
+							{
+								SetDlgItemTextA(hDlg, i, IntToHex(bVal[i]).c_str());
+							}
+						}else
+						{
+							for(int i = IDC_BVAL1; i <= IDC_BVAL255; i++)
+							{
+								SetDlgItemTextA(hDlg, i, "??");
+							}
+						}
+						//init lbl address
+						for(int i = IDC_ADDR1; i <= IDC_ADDR16; i++)
+						{
+							SetDlgItemTextA(hDlg, i, IntToHex(dwAddr+(16*j)).c_str());
+							j++;
+						}
+					}
+					
+					break;
+			}
+			break;
+		case WM_COMMAND:
+			switch(LOWORD(wParam))
+			{
+				case IDC_BTNINC:
+					{
+						GetDlgItemTextA(hDlg, IDC_EDADDR, buf, 9);
+						DWORD X = hextoint(buf)+16;
+						SetDlgItemTextA(hDlg, IDC_EDADDR, IntToHex(X).c_str());
+					}
+					break;
+				case IDC_BTNDEC:
+					{
+						GetDlgItemTextA(hDlg, IDC_EDADDR, buf, 9);
+						DWORD X = hextoint(buf)-16;
+						SetDlgItemTextA(hDlg, IDC_EDADDR, IntToHex(X).c_str());
+					}
+					break;
+			}
+			break;
+		default:
+			return FALSE;
+			break;
+	}
+	return FALSE;
+}
