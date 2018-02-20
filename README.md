@@ -8,7 +8,6 @@ Project ini dibuat untuk mem-bypass Anti-Cheat seperti XignCode, nProtect, X-Tra
 Compiler : Visual Studio 2017 (Project awalnya di buat di VS 2008 Upgrade ke 2017)
 
 Language : C/C++ (MFC)
-
 Apabila ada issue, error, bug, kritik atau saran, silahkan laporan.
 
 My Space :
